@@ -571,7 +571,7 @@ public:
     /// @return The cached transaction context.
     evmc_tx_context get_tx_context() const noexcept final
     {
-        if (tx_context.block_timestamp == 0)
+        if (__builtin_expect(tx_context.block_timestamp == 0, false))
             tx_context = host->get_tx_context(context);
         return tx_context;
     }
